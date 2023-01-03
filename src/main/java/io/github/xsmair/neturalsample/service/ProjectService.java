@@ -22,6 +22,11 @@ public class ProjectService {
         return projectRepository.findAll();
     }
 
+    public Project getProjectById(Long id) {
+        return projectRepository.findById(id).orElse(null);
+    }
 
-
+    public Project createProject(Project project) {
+        return projectRepository.save(project);
+    }
 }

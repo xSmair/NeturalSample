@@ -3,9 +3,7 @@ package io.github.xsmair.neturalsample.controller;
 import io.github.xsmair.neturalsample.model.Project;
 import io.github.xsmair.neturalsample.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,15 @@ public class ProjectController {
     @GetMapping
     public List<Project> getAllProjects() {
         return projectService.getAllProjects();
+    }
+
+    @GetMapping("/{id}")
+    public Project getProjectById(@PathVariable Long id) {
+        return projectService.getProjectById(id);
+    }
+
+    @PostMapping
+    public Project createProject(@RequestBody Project project) {
+        return projectService.createProject(project);
     }
 }
