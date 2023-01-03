@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 public class Department {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -37,8 +37,6 @@ public class Department {
     private String country;
 
     private String company;
-
-    private String title;
 
     @ManyToOne
     private User Manager;

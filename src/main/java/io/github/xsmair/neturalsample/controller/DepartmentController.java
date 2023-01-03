@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/departments")
+@CrossOrigin(origins = "http://localhost:4200", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, allowedHeaders = {"Content-Type"})
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -43,23 +44,23 @@ public class DepartmentController {
         departmentService.deleteDepartment(id);
     }
 
-    @GetMapping("search")
-    public List<Department> searchDepartments(String searchTerm) {
+    @GetMapping("search/{searchTerm}")
+    public List<Department> searchDepartments(@PathVariable String searchTerm) {
         return departmentService.findByNameContainingOrLocationContaining(searchTerm);
     }
 
     @GetMapping("/{id}/users")
-    public List<User> getDepartmentUsers(Long id) {
+    public List<User> getDepartmentUsers(@PathVariable Long id) {
         return departmentService.getUsersInDepartment(id);
     }
 
     @GetMapping("/{id}/manager")
-    public User getDepartmentManager(Long id) {
+    public User getDepartmentManager(@PathVariable Long id) {
         return departmentService.getManagerOfDepartment(id);
     }
 
     @PutMapping("/{id}/manager")
-    public ResponseEntity<?> setDepartmentManager(Long id, Long userId) {
+    public ResponseEntity<?> setDepartmentManager(@PathVariable Long id, @RequestBody Long userId) {
         departmentService.updateManagerOfDepartment(id, userId);
         return ResponseEntity.ok().build();
     }

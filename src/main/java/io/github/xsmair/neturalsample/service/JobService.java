@@ -32,7 +32,6 @@ public class JobService {
         Job jobToUpdate = getJobById(id);
         jobToUpdate.setName(job.getName());
         jobToUpdate.setDescription(job.getDescription());
-        jobToUpdate.setDepartment(job.getDepartment());
         return jobRepository.save(jobToUpdate);
     }
 

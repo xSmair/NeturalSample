@@ -51,7 +51,6 @@ public class DepartmentService {
         departmentToUpdate.setZip(department.getZip());
         departmentToUpdate.setCountry(department.getCountry());
         departmentToUpdate.setCompany(department.getCompany());
-        departmentToUpdate.setTitle(department.getTitle());
         departmentToUpdate.setManager(department.getManager());
         return departmentRepository.save(departmentToUpdate);
     }
